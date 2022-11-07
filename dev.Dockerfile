@@ -3,7 +3,7 @@ FROM golang:alpine3.16
 
 # Install git.
 # Git is required for fetching the dependencies.
-RUN apk update && apk add --no-cache git && apk add --no-cach bash && apk add build-base
+RUN apk update && apk add --no-cache git && apk add --no-cache bash && apk add build-base
 
 # Setup folders
 RUN mkdir /app
@@ -23,4 +23,4 @@ RUN go install -v ./...
 RUN go install -mod=mod github.com/githubnemo/CompileDaemon
 RUN go get -v golang.org/x/tools/gopls
 
-ENTRYPOINT CompileDaemon --build="go build -a -installsuffix cgo -o main ." --command=./main
+ENTRYPOINT CompileDaemon --build="go build -a -installsuffix cgo -o main ." --command=./main --polling

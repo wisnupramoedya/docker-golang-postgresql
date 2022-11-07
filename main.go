@@ -9,7 +9,7 @@ func main() {
 	e := echo.New()
 
 	e.GET("/", func(ctx echo.Context) error {
-		data := "Program web-app from /index"
+		data := "Program web-app from the /index"
 		return ctx.String(http.StatusOK, data)
 	})
 
