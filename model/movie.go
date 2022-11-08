@@ -9,5 +9,5 @@ type Movie struct {
 	Title       string         `json:"title"`
 	Overview    string         `json:"overview"`
 	ReleaseDate time.Time      `json:"releaseDate"`
-	Genres      pq.StringArray `gorm:"type:varchar(64)[]" json:"genres"`
+	Genres      pq.StringArray `gorm:"type:text[]" json:"genres"`
 }
