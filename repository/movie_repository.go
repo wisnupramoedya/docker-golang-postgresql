@@ -9,9 +9,14 @@ func GetAllMoviesDB() ([]model.Movie, error) {
 	db := config.GetDBInstance()
 	var movies []model.Movie
 
-	if err := db.Find(&movies).Error; err != nil {
-		return nil, err
-	}
+	result := db.Find(&movies)
+	return movies, result.Error
+}
 
-	return movies, nil
+func GetMovieDBWithId(id int) (model.Movie, error) {
+	db := config.GetDBInstance()
+	var movie model.Movie
+
+	result := db.Where("index = ?", id).First(&movie)
+	return movie, result.Error
 }

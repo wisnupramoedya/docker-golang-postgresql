@@ -10,9 +10,8 @@ const (
 	DBUser     = "user_pg"
 	DBPassword = "user_pg_123"
 	DBName     = "movies"
-	DBHost     = "192.168.18.1"
-	DBPort     = 5431
-	DBType     = "postgres"
+	DBHost     = "postgres_container"
+	DBPort     = 5432
 )
 
 var DB *gorm.DB

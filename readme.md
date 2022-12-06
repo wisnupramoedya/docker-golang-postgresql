@@ -20,8 +20,12 @@ To run prod setting to code.
 # to start
 docker-compose up -d
 # to stop
-
 docker-compose down
 ```
 
 CompileDaemon could not hot reload.
+
+# How to Setting
+1. Copy docker-compose.yml and start it
+2. Run PostgreSQL programs to send data to DB
+3. Connect to the `IP:9000`
