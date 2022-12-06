@@ -12,7 +12,7 @@ services:
 #    build:
 #      context: .
 #      dockerfile: Dockerfile
-    image: wisnupramoedya/golangvm:1.0
+    image: wisnupramoedya/golangvm:1.1
     ports:
       - "9000:9000"
     restart: on-failure
