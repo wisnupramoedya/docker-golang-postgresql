@@ -9,7 +9,10 @@ services:
       - DATABASE_HOST=${DB_HOST}
       - DATABASE_PORT=${DB_PORT}
     tty: true
-    build: .
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+    image: wisnupramoedya/golangvm:1.0
     ports:
       - "9000:9000"
     restart: on-failure

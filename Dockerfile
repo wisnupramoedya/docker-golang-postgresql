@@ -1,5 +1,5 @@
 # Start from golang base image
-FROM golang:alpine3.16
+FROM golang:alpine3.16 as builder
 
 # Setup folders
 RUN mkdir /app
@@ -9,6 +9,10 @@ WORKDIR /app
 COPY . .
 COPY .env .
 
+ENV CGO_ENABLED=0
+ENV GOOS=linux
+ENV GOARCH=amd64
+
 # Download all the dependencies
 RUN go get -d -v ./...
 
@@ -16,10 +20,15 @@ RUN go get -d -v ./...
 RUN go install -v ./...
 
 # Build the Go app
-RUN go build -o /build
+RUN go build -o main
 
-# Expose port 8080 to the outside world
-EXPOSE 8080
+# stage 2: copy only the application binary file and necessary files to the alpine container
+FROM alpine:3.12
+RUN apk --update add ca-certificates
 
-# Run the executable
-CMD [ "/build" ]
+WORKDIR /app
+
+COPY --from=builder /app/main .
+
+# run the service on container startup.
+CMD ["/app/main"]
